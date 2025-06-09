@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia Millena Nóbrega - Materiais Visuais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f4f0 0%, #fff8f0 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #d4a574;
+        }
+        
+        .intro h2 {
+            color: #d4a574;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .intro p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .material-card.empatia {
+            border-left-color: #3498db;
+        }
+        
+        .material-card.experiencia {
+            border-left-color: #27ae60;
+        }
+        
+        .material-card.mental {
+            border-left-color: #e74c3c;
+        }
+        
+        .material-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .material-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .material-card .features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .material-card .features li {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .material-card .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+        }
+        
+        .footer p {
+            font-size: 14px;
+        }
+        
+        .footer strong {
+            color: #d4a574;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔮 Estratégia Millena Nóbrega</h1>
+            <p>Materiais Visuais da Mentoria de Conteúdos Envolventes 3.0</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>📊 Análise Estratégica Completa</h2>
+                <p>Conjunto de materiais visuais desenvolvidos pela <strong>Essentia Estúdio</strong> para o lançamento estratégico da Mentoria 3.0, combinando análise de mercado, persona detalhada e jornada do cliente em formatos interativos e profissionais.</p>
+            </div>
+            
+            <div class="materials-grid">
+                <div class="material-card empatia">
+                    <h3>👥 Mapa de Empatia</h3>
+                    <p>Persona detalhada da cliente ideal da Mentoria 3.0, incluindo comportamentos, dores, objetivos e insights estratégicos para comunicação direcionada.</p>
+                    
+                    <ul class="features">
+                        <li>4 quadrantes principais de análise</li>
+                        <li>Dores e objetivos específicos</li>
+                        <li>Insights para comunicação</li>
+                        <li>Layout profissional e legível</li>
+                    </ul>
+                    
+                    <a href="mapa_empatia_millena_legivel.html" target="_blank" class="btn">Visualizar Mapa de Empatia</a>
+                </div>
+                
+                <div class="material-card experiencia">
+                    <h3>🗺️ Mapa de Experiência</h3>
+                    <p>Jornada completa do cliente em 7 fases estratégicas, desde o primeiro contato até a transformação final, com touchpoints e oportunidades identificadas.</p>
+                    
+                    <ul class="features">
+                        <li>7 fases da jornada detalhadas</li>
+                        <li>Touchpoints específicos</li>
+                        <li>Oportunidades de otimização</li>
+                        <li>Dimensões otimizadas para apresentação</li>
+                    </ul>
+                    
+                    <a href="mapa_experiencia_horizontal_millena.html" target="_blank" class="btn">Visualizar Mapa de Experiência</a>
+                </div>
+                
+                <div class="material-card mental">
+                    <h3>🧠 Mapa Mental Macroambiente</h3>
+                    <p>Análise estratégica do macroambiente conectando tendências econômicas, tecnológicas, sociais e culturais com a estratégia de lançamento.</p>
+                    
+                    <ul class="features">
+                        <li>6 ramificações do macroambiente</li>
+                        <li>Insights estratégicos específicos</li>
+                        <li>Conexões com a estratégia</li>
+                        <li>Validação do posicionamento premium</li>
+                    </ul>
+                    
+                    <a href="mapa_mental_corrigido.html" target="_blank" class="btn">Visualizar Mapa Mental</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Preparado por <strong>Natália Silva - Essentia Estúdio</strong> | Janeiro 2025</p>
+            <p>Estratégia de Lançamento Premium para Empreendedoras Digitais</p>
+        </div>
+    </div>
+</body>
+</html>
+
