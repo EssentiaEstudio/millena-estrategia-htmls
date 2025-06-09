@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetivos de Conteúdo por Etapa da Jornada - Millena Nóbrega</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #6c757d;
+            color: white;
+            padding: 20px 30px;
+            border-bottom: 3px solid #495057;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .platform-tag {
+            background: #495057;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .section-row {
+            background: #e9ecef;
+        }
+
+        .section-header {
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #495057;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            background: #6c757d;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .journey-stages {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .stage-header {
+            background: #f8f9fa;
+            padding: 20px 15px;
+            text-align: center;
+            border-right: 1px solid #dee2e6;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        .stage-header:last-child {
+            border-right: none;
+        }
+
+        .stage-description {
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #6c757d;
+            line-height: 1.4;
+            min-height: 80px;
+            border-right: 1px solid #dee2e6;
+            background: white;
+        }
+
+        .stage-description:last-child {
+            border-right: none;
+        }
+
+        .indicators-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .indicator-cell {
+            padding: 12px 15px;
+            border-right: 1px solid #dee2e6;
+            font-size: 0.8rem;
+            color: #495057;
+            background: white;
+        }
+
+        .indicator-cell:last-child {
+            border-right: none;
+        }
+
+        .indicator-label {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 5px;
+        }
+
+        .parameters-section {
+            background: #fff3cd;
+        }
+
+        .parameter-cell {
+            padding: 12px 15px;
+            border-right: 1px solid #dee2e6;
+            font-size: 0.8rem;
+            color: #856404;
+            background: #fff3cd;
+        }
+
+        .parameter-cell:last-child {
+            border-right: none;
+        }
+
+        .parameter-label {
+            font-weight: 600;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+
+        .comparison-section {
+            background: #e3f2fd;
+        }
+
+        .comparison-cell {
+            padding: 12px 15px;
+            border-right: 1px solid #dee2e6;
+            font-size: 0.8rem;
+            color: #0d47a1;
+            background: #e3f2fd;
+        }
+
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+
+        .comparison-label {
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 5px;
+        }
+
+        .conclusion-section {
+            background: #f8d7da;
+            padding: 20px 30px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .conclusion-icon {
+            width: 24px;
+            height: 24px;
+            background: #dc3545;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .conclusion-title {
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .conclusion-item {
+            background: white;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #dc3545;
+        }
+
+        .conclusion-item h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #721c24;
+            margin-bottom: 5px;
+        }
+
+        .conclusion-item p {
+            font-size: 0.75rem;
+            color: #721c24;
+            line-height: 1.3;
+        }
+
+        .actions-section {
+            padding: 20px 30px;
+            background: #d4edda;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .actions-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .actions-icon {
+            width: 24px;
+            height: 24px;
+            background: #28a745;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .actions-title {
+            font-weight: 600;
+            color: #155724;
+            font-size: 0.9rem;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .action-item {
+            background: white;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #28a745;
+        }
+
+        .action-item h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #155724;
+            margin-bottom: 5px;
+        }
+
+        .action-item p {
+            font-size: 0.75rem;
+            color: #155724;
+            line-height: 1.3;
+        }
+
+        .metric-highlight {
+            background: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #0d47a1;
+        }
+
+        .content-type {
+            background: #f3e5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+            color: #4a148c;
+            margin: 2px 0;
+            display: inline-block;
+        }
+
+        .current-metric {
+            background: #ffecb3;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #e65100;
+        }
+
+        .target-metric {
+            background: #c8e6c9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+
+        @media (max-width: 768px) {
+            .journey-stages,
+            .indicators-row,
+            .conclusion-grid,
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stage-header,
+            .stage-description,
+            .indicator-cell,
+            .parameter-cell,
+            .comparison-cell {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+            
+            .container {
+                margin: 0;
+            }
+            
+            .header,
+            .conclusion-section,
+            .actions-section {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Millena Nóbrega / Storyteller Estratégica</h1>
+            <div class="subtitle">
+                🎯 <span>Objetivos de Conteúdo por Etapa da Jornada - 2025</span>
+                <span class="platform-tag">Instagram</span>
+            </div>
+        </div>
+
+        <table class="main-table">
+            <!-- Etapas da Jornada -->
+            <tr class="section-row">
+                <td colspan="5" class="section-header">
+                    <div class="section-icon">📍</div>
+                    Etapa da Jornada
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="journey-stages">
+                        <div class="stage-header">Descoberta</div>
+                        <div class="stage-header">Consideração</div>
+                        <div class="stage-header">Conversão</div>
+                        <div class="stage-header">XP Própria</div>
+                        <div class="stage-header">XP Compartilhada</div>
+                    </div>
+                    <div class="journey-stages">
+                        <div class="stage-description">
+                            Atrair pessoas certas e gerar identificação através de <span class="content-type">conteúdo educativo</span> sobre storytelling estratégico
+                        </div>
+                        <div class="stage-description">
+                            Posicionar a sua marca, aumentar a autoridade, nutrir seguidores e demonstrar valor único da metodologia
+                        </div>
+                        <div class="stage-description">
+                            Aumentar a intenção de compra e converter seguidores em leads através de <span class="content-type">automações e CTAs</span>
+                        </div>
+                        <div class="stage-description">
+                            Reter clientes, promover a experiência e celebrar conquistas. Aumentar a experiência e satisfação
+                        </div>
+                        <div class="stage-description">
+                            Aumentar o número de promotores nas mídias sociais através de <span class="content-type">UGC e depoimentos</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Indicadores -->
+            <tr class="section-row">
+                <td colspan="5" class="section-header">
+                    <div class="section-icon">📊</div>
+                    Indicadores de Conteúdo
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="indicators-row">
+                        <div class="indicator-cell">
+                            <div class="indicator-label">Contas alcançadas:</div>
+                            <span class="metric-highlight">Taxa de descoberta</span><br><br>
+                            <div class="indicator-label">Impressões:</div>
+                            <span class="metric-highlight">Frequência</span><br><br>
+                            <div class="indicator-label">Tipos de conteúdo:</div>
+                            <span class="content-type">Educativo</span>
+                            <span class="content-type">Inspiracional</span>
+                            <span class="content-type">Pessoal</span>
+                        </div>
+                        <div class="indicator-cell">
+                            <div class="indicator-label">Visitas ao perfil:</div>
+                            <span class="metric-highlight">Taxa de visitas ao perfil</span><br><br>
+                            <div class="indicator-label">Tempo de resposta DM:</div>
+                            <span class="metric-highlight">Menções recebidas</span><br><br>
+                            <div class="indicator-label">Tipos de conteúdo:</div>
+                            <span class="content-type">Cases</span>
+                            <span class="content-type">Metodologia</span>
+                            <span class="content-type">Autoridade</span>
+                        </div>
+                        <div class="indicator-cell">
+                            <div class="indicator-label">Cliques no link da bio:</div>
+                            <span class="metric-highlight">DMs com automação</span><br><br>
+                            <div class="indicator-label">Tipos de conteúdo:</div>
+                            <span class="content-type">CTA formulário</span>
+                            <span class="content-type">Ebook storytelling</span>
+                            <span class="content-type">WhatsApp grupo</span>
+                            <span class="content-type">Café Narrativa</span>
+                        </div>
+                        <div class="indicator-cell">
+                            <div class="indicator-label">Taxa de alcance Stories:</div>
+                            <span class="metric-highlight">Taxa de alcance Feed</span><br><br>
+                            <div class="indicator-label">Tipos de conteúdo:</div>
+                            <span class="content-type">Bastidores</span>
+                            <span class="content-type">Resultados</span>
+                            <span class="content-type">Celebração</span>
+                            <span class="content-type">Processo</span>
+                        </div>
+                        <div class="indicator-cell">
+                            <div class="indicator-label">Taxa de engajamento UGC:</div>
+                            <span class="metric-highlight">Taxa de compartilhamento</span><br><br>
+                            <div class="indicator-label">Tipos de conteúdo:</div>
+                            <span class="content-type">Depoimentos</span>
+                            <span class="content-type">Cases de sucesso</span>
+                            <span class="content-type">Transformações</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Parâmetros -->
+            <tr class="section-row">
+                <td colspan="5" class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    Parâmetros de Execução
+                </td>
+            </tr>
+            <tr class="parameters-section">
+                <td colspan="5">
+                    <div class="indicators-row">
+                        <div class="parameter-cell">
+                            <div class="parameter-label">Contas alcançadas:</div>
+                            15% do total de seguidores<br><br>
+                            <div class="parameter-label">Frequência:</div>
+                            3x por semana (educativo)<br><br>
+                            <div class="parameter-label">Taxa de descoberta:</div>
+                            40% novos seguidores/mês
+                        </div>
+                        <div class="parameter-cell">
+                            <div class="parameter-label">Visitas ao perfil:</div>
+                            8% dos seguidores/semana<br><br>
+                            <div class="parameter-label">Tempo de resposta DM:</div>
+                            Máximo 4 horas<br><br>
+                            <div class="parameter-label">Frequência autoridade:</div>
+                            2x por semana
+                        </div>
+                        <div class="parameter-cell">
+                            <div class="parameter-label">Cliques no link:</div>
+                            5% das visitas ao perfil<br><br>
+                            <div class="parameter-label">Automações ativas:</div>
+                            1 palavra-chave por automação<br><br>
+                            <div class="parameter-label">Taxa conversão DM:</div>
+                            25% dos DMs automatizados
+                        </div>
+                        <div class="parameter-cell">
+                            <div class="parameter-label">Taxa de alcance Stories:</div>
+                            20% dos seguidores<br><br>
+                            <div class="parameter-label">Taxa de alcance Feed:</div>
+                            12% dos seguidores<br><br>
+                            <div class="parameter-label">Frequência celebração:</div>
+                            2x por semana
+                        </div>
+                        <div class="parameter-cell">
+                            <div class="parameter-label">Taxa de engajamento UGC:</div>
+                            5% em posts de depoimento<br><br>
+                            <div class="parameter-label">Taxa de compartilhamento:</div>
+                            3% em transformações<br><br>
+                            <div class="parameter-label">Frequência UGC:</div>
+                            1x por semana
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Comparativo Atual vs Meta -->
+            <tr class="section-row">
+                <td colspan="5" class="section-header">
+                    <div class="section-icon">📈</div>
+                    Comparativo: Atual vs Meta
+                </td>
+            </tr>
+            <tr class="comparison-section">
+                <td colspan="5">
+                    <div class="indicators-row">
+                        <div class="comparison-cell">
+                            <div class="comparison-label">Contas alcançadas atual:</div>
+                            <span class="current-metric">8-12%</span> → <span class="target-metric">15%</span><br><br>
+                            <div class="comparison-label">Crescimento atual:</div>
+                            <span class="current-metric">3.902/mês</span> → <span class="target-metric">6.000/mês</span><br><br>
+                            <div class="comparison-label">Frequência atual:</div>
+                            <span class="current-metric">2x/semana</span> → <span class="target-metric">3x/semana</span>
+                        </div>
+                        <div class="comparison-cell">
+                            <div class="comparison-label">Visitas perfil atual:</div>
+                            <span class="current-metric">5%/semana</span> → <span class="target-metric">8%/semana</span><br><br>
+                            <div class="comparison-label">Tempo resposta DM atual:</div>
+                            <span class="current-metric">6-8h</span> → <span class="target-metric">4h</span><br><br>
+                            <div class="comparison-label">Conteúdo autoridade:</div>
+                            <span class="current-metric">1x/semana</span> → <span class="target-metric">2x/semana</span>
+                        </div>
+                        <div class="comparison-cell">
+                            <div class="comparison-label">Cliques no link atual:</div>
+                            <span class="current-metric">2-3%</span> → <span class="target-metric">5%</span><br><br>
+                            <div class="comparison-label">Automações atual:</div>
+                            <span class="current-metric">0 ativas</span> → <span class="target-metric">1 por automação</span><br><br>
+                            <div class="comparison-label">Conversão DM atual:</div>
+                            <span class="current-metric">10%</span> → <span class="target-metric">25%</span>
+                        </div>
+                        <div class="comparison-cell">
+                            <div class="comparison-label">Alcance Stories atual:</div>
+                            <span class="current-metric">15-18%</span> → <span class="target-metric">20%</span><br><br>
+                            <div class="comparison-label">Alcance Feed atual:</div>
+                            <span class="current-metric">8-10%</span> → <span class="target-metric">12%</span><br><br>
+                            <div class="comparison-label">Celebração atual:</div>
+                            <span class="current-metric">1x/semana</span> → <span class="target-metric">2x/semana</span>
+                        </div>
+                        <div class="comparison-cell">
+                            <div class="comparison-label">Engajamento UGC atual:</div>
+                            <span class="current-metric">3%</span> → <span class="target-metric">5%</span><br><br>
+                            <div class="comparison-label">Compartilhamento atual:</div>
+                            <span class="current-metric">1.5%</span> → <span class="target-metric">3%</span><br><br>
+                            <div class="comparison-label">UGC atual:</div>
+                            <span class="current-metric">2x/mês</span> → <span class="target-metric">1x/semana</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="conclusion-section">
+            <div class="conclusion-icon">💡</div>
+            <div class="conclusion-title">Conclusão diante dos parâmetros por etapa</div>
+            <div class="conclusion-grid">
+                <div class="conclusion-item">
+                    <h4>Descoberta</h4>
+                    <p>Necessário aumentar frequência de conteúdo educativo e melhorar alcance orgânico para atingir meta de crescimento de 6k seguidores/mês.</p>
+                </div>
+                <div class="conclusion-item">
+                    <h4>Consideração</h4>
+                    <p>Foco em dobrar conteúdo de autoridade e reduzir tempo de resposta DM para aumentar visitas ao perfil de 5% para 8%/semana.</p>
+                </div>
+                <div class="conclusion-item">
+                    <h4>Conversão</h4>
+                    <p>Implementar 1 palavra-chave por automação e otimizar link na bio para dobrar taxa de cliques e melhorar conversão de DMs.</p>
+                </div>
+                <div class="conclusion-item">
+                    <h4>XP Própria</h4>
+                    <p>Intensificar conteúdo de bastidores e celebração para melhorar alcance tanto em Stories (20%) quanto Feed (12%).</p>
+                </div>
+                <div class="conclusion-item">
+                    <h4>XP Compartilhada</h4>
+                    <p>Implementar estratégia sistemática de UGC para dobrar frequência e aumentar engajamento em depoimentos para 5%.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <div class="actions-header">
+                <div class="actions-icon">⚠️</div>
+                <div class="actions-title">Ações de Contingência por Etapa</div>
+            </div>
+            <div class="actions-grid">
+                <div class="action-item">
+                    <h4>Se alcance < 15%</h4>
+                    <p><strong>Ação:</strong> Otimizar horários de publicação baseado em analytics, aumentar interação nos primeiros 30min e testar formatos de carrossel vs. vídeo.</p>
+                </div>
+                <div class="action-item">
+                    <h4>Se visitas perfil < 8%</h4>
+                    <p><strong>Ação:</strong> Otimizar destaques do perfil, criar carrosséis mais envolventes e implementar Stories com mais call-to-action para o Feed.</p>
+                </div>
+                <div class="action-item">
+                    <h4>Se automações < 25%</h4>
+                    <p><strong>Ação:</strong> Revisar palavras-chave das automações, testar novos lead magnets (ebook storytelling), e otimizar copy dos CTAs.</p>
+                </div>
+                <div class="action-item">
+                    <h4>Se alcance Stories < 20%</h4>
+                    <p><strong>Ação:</strong> Aumentar frequência de Stories, implementar enquetes e perguntas, criar conteúdo mais interativo e testar Stories em horários de pico.</p>
+                </div>
+                <div class="action-item">
+                    <h4>Se UGC < 1x/semana</h4>
+                    <p><strong>Ação:</strong> Criar programa de incentivos para depoimentos, implementar follow-up sistemático pós-mentoria e facilitar processo de criação de UGC.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
