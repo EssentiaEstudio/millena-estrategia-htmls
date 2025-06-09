@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental: Macroambiente e Estratégia Millena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f4f0 0%, #fff8f0 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .mind-map-container {
+            padding: 40px;
+            background: #fafafa;
+        }
+        
+        .central-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .central-node {
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.3);
+            margin: 0 auto;
+        }
+        
+        .central-node h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .central-node .subtitle {
+            font-size: 16px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .central-node .metrics {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .branch {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .branch h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .branch-content {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .branch-content strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .branch-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        
+        .branch-content li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .branch-content li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .insight {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .connection {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Cores específicas para cada branch */
+        .branch-economia {
+            border-left-color: #3498db;
+        }
+        .branch-economia .insight {
+            border-left-color: #3498db;
+        }
+        .branch-economia li:before {
+            color: #3498db;
+        }
+        
+        .branch-tecnologia {
+            border-left-color: #e74c3c;
+        }
+        .branch-tecnologia .insight {
+            border-left-color: #e74c3c;
+        }
+        .branch-tecnologia li:before {
+            color: #e74c3c;
+        }
+        
+        .branch-social {
+            border-left-color: #f39c12;
+        }
+        .branch-social .insight {
+            border-left-color: #f39c12;
+        }
+        .branch-social li:before {
+            color: #f39c12;
+        }
+        
+        .branch-sustentabilidade {
+            border-left-color: #27ae60;
+        }
+        .branch-sustentabilidade .insight {
+            border-left-color: #27ae60;
+        }
+        .branch-sustentabilidade li:before {
+            color: #27ae60;
+        }
+        
+        .branch-politica {
+            border-left-color: #9b59b6;
+        }
+        .branch-politica .insight {
+            border-left-color: #9b59b6;
+        }
+        .branch-politica li:before {
+            color: #9b59b6;
+        }
+        
+        .branch-cultura {
+            border-left-color: #e67e22;
+        }
+        .branch-cultura .insight {
+            border-left-color: #e67e22;
+        }
+        .branch-cultura li:before {
+            color: #e67e22;
+        }
+        
+        .summary {
+            background: #f8f9fa;
+            padding: 40px;
+            border-top: 4px solid #d4a574;
+        }
+        
+        .summary h2 {
+            color: #d4a574;
+            font-size: 26px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #d4a574;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .insight-card h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .insight-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+        
+        .conclusion h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .conclusion p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        @media (max-width: 768px) {
+            .central-node {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .central-node h2 {
+                font-size: 18px;
+            }
+            
+            .central-node .subtitle {
+                font-size: 14px;
+            }
+            
+            .branches-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 MAPA MENTAL: MACROAMBIENTE E ESTRATÉGIA</h1>
+            <p>Conexões Estratégicas entre Análise de Mercado e Lançamento Mentoria 3.0</p>
+        </div>
+        
+        <div class="mind-map-container">
+            <div class="central-section">
+                <div class="central-node">
+                    <h2>🔮 MENTORIA 3.0</h2>
+                    <div class="subtitle">"Maga do Storytelling Estratégico"</div>
+                    <div class="metrics">
+                        R$ 375k-450k<br>
+                        25-30 Mentorados Premium
+                    </div>
+                </div>
+            </div>
+            
+            <div class="branches-grid">
+                <!-- Branch 1: Economia Digital -->
+                <div class="branch branch-economia">
+                    <h3>📊 ECONOMIA DIGITAL</h3>
+                    <div class="branch-content">
+                        <strong>Crescimento Validado:</strong>
+                        <ul>
+                            <li>30% crescimento Creator Economy em 12 meses</li>
+                            <li>R$ 204,3 bilhões e-commerce (+10,5% vs 2023)</li>
+                            <li>42% têm infoprodutos como renda principal</li>
+                            <li>Produtos High Ticket em alta demanda</li>
+                        </ul>
+                        
+                        <div class="insight">
+                            💡 <strong>INSIGHT:</strong> "O timing da Millena é perfeito para mentoria premium de R$ 15.000"
+                        </div>
+                        
+                        <div class="connection">
+                            🔗 <strong>CONEXÃO:</strong> Posicionamento premium justificado pelo mercado maduro e demanda por mentorias individuais
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch 2: Tecnologia -->
+                <div class="branch branch-tecnologia">
+                    <h3>🚀 TECNOLOGIA & IA</h3>
+                    <div class="branch-content">
+                        <strong>IA Revolucionando Mentoria:</strong>
+                        <ul>
+                            <li>IBM Watson Career Coach para orientação profissional</li>
+                            <li>MentorcliQ com matching inteligente</li>
+                            <li>Meta/TikTok/LinkedIn integrando IA</li>
+                            <li>5% crescimento PIB brasileiro até 2035 com IA</li>
+                        </ul>
+                        
+                        <div class="insight">
+                            🤖 <strong>INSIGHT:</strong> "IA como potencializador do storytelling humano, não substituto"
+                        </div>
+                        
+                        <div class="connection">
+                            🔗 <strong>CONEXÃO:</strong> Série "Storytelling Estratégico" pode incluir ferramentas IA e diagnósticos personalizados
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch 3: Comportamento Social -->
+                <div class="branch branch-social">
+                    <h3>👥 COMPORTAMENTO SOCIAL</h3>
+                    <div class="branch-content">
+                        <strong>Mudanças no Consumidor:</strong>
+                        <ul>
+                            <li>83,3% dos domicílios com banda larga</li>
+                            <li>50% aumento na procura por cursos online</li>
+                            <li>Bem-estar mental como prioridade</li>
+                            <li>75 milhões de usuários LinkedIn Brasil</li>
+                        </ul>
+                        
+                        <div class="insight">
+                            🧘 <strong>INSIGHT:</strong> "Audiência busca storytelling sem pressão de vendas e metodologia anti-burnout"
+                        </div>
+                        
+                        <div class="connection">
+                            🔗 <strong>CONEXÃO:</strong> Posicionamento "Maga" atende busca por bem-estar e LinkedIn como canal B2B qualificado
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch 4: Sustentabilidade -->
+                <div class="branch branch-sustentabilidade">
+                    <h3>🌱 SUSTENTABILIDADE</h3>
+                    <div class="branch-content">
+                        <strong>Negócios Conscientes em Alta:</strong>
+                        <ul>
+                            <li>45% dos executivos aumentarão investimento ambiental</li>
+                            <li>72,8% dos brasileiros pesquisam marca antes de comprar</li>
+                            <li>20% aumento na eficiência de empresas sustentáveis</li>
+                            <li>Sustentabilidade digital como estratégia</li>
+                        </ul>
+                        
+                        <div class="insight">
+                            🌍 <strong>INSIGHT:</strong> "Marketing sustentável vs. práticas predatórias como diferencial competitivo"
+                        </div>
+                        
+                        <div class="connection">
+                            🔗 <strong>CONEXÃO:</strong> Storytelling autêntico e crescimento sustentável vs. marketing manipulativo
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch 5: Política -->
+                <div class="branch branch-politica">
+                    <h3>⚖️ AMBIENTE POLÍTICO</h3>
+                    <div class="branch-content">
+                        <strong>Regulamentação e Apoio:</strong>
+                        <ul>
+                            <li>Estratégia Federal de Governo Digital 2024-2027</li>
+                            <li>Brasil presidência BRICS com foco em IA</li>
+                            <li>LGPD como marco regulatório crucial</li>
+                            <li>G20 discutindo economia digital</li>
+                        </ul>
+                        
+                        <div class="insight">
+                            📋 <strong>INSIGHT:</strong> "Compliance como vantagem competitiva e barreira de entrada"
+                        </div>
+                        
+                        <div class="connection">
+                            🔗 <strong>CONEXÃO:</strong> Processo seletivo rigoroso demonstra profissionalismo vs. concorrentes informais
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Branch 6: Cultura -->
+                <div class="branch branch-cultura">
+                    <h3>🎭 TRANSFORMAÇÃO CULTURAL</h3>
+                    <div class="branch-content">
+                        <strong>Aceitação do Digital:</strong>
+                        <ul>
+                            <li>Educação online legitimada como principal recurso</li>
+                            <li>E-learning consolidado nas organizações</li>
+                            <li>Empreendedorismo digital culturalmente aceito</li>
+                            <li>Influenciadores como educadores reconhecidos</li>
+                        </ul>
+                        
+                        <div class="insight">
+                            🌟 <strong>INSIGHT:</strong> "Momento cultural ideal para estabelecer autoridade digital"
+                        </div>
+                        
+                        <div class="connection">
+                            🔗 <strong>CONEXÃO:</strong> Evolução para "Maga" alinhada com aceitação de autoridades digitais
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <h2>🎯 INSIGHTS ESTRATÉGICOS PRINCIPAIS</h2>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>⏰ TIMING PERFEITO DE MERCADO</h3>
+                    <p>Convergência de fatores econômicos, tecnológicos, sociais e culturais cria cenário ideal para lançamento premium da Millena.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🎯 POSICIONAMENTO ÚNICO VALIDADO</h3>
+                    <p>"Maga do Storytelling Estratégico" responde exatamente às demandas identificadas no macroambiente atual.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🚀 OPORTUNIDADES DE DIFERENCIAÇÃO</h3>
+                    <p>IA + Storytelling, Marketing Sustentável e Compliance Premium criam barreira competitiva sólida.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🛡️ RISCOS MITIGADOS</h3>
+                    <p>Crescimento do mercado, diferenciação clara e posicionamento premium protegem a estratégia de commoditização.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>📈 EXPANSÃO FUTURA VALIDADA</h3>
+                    <p>Mercado corporativo, ferramentas IA proprietárias e expansão internacional validados pelo ambiente macro.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>✅ ESTRATÉGIA CONFIRMADA</h3>
+                    <p>Análise macroambiente valida projeções de R$ 375k-450k e posicionamento premium da Mentoria 3.0.</p>
+                </div>
+            </div>
+            
+            <div class="conclusion">
+                <h3>💡 CONCLUSÃO ESTRATÉGICA</h3>
+                <p>A análise do macroambiente confirma que nossa estratégia para Millena Nóbrega está perfeitamente alinhada com as tendências e oportunidades do mercado. O posicionamento como "Maga do Storytelling Estratégico" não é apenas uma evolução natural da marca, mas uma resposta estratégica às demandas identificadas no ambiente macro.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

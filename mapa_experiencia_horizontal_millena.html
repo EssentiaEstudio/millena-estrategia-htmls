@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Experiência - Millena Nóbrega</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            overflow-x: auto;
+            min-width: 1400px;
+        }
+        
+        .container {
+            width: 1400px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        /* PHASES HEADER */
+        .phases-container {
+            display: flex;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .phase-label {
+            width: 120px;
+            padding: 15px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            background: #34495e;
+            border-right: 1px solid #2c3e50;
+        }
+        
+        .phases-row {
+            display: flex;
+            flex: 1;
+        }
+        
+        .phase-header {
+            flex: 1;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            background: #2c3e50;
+        }
+        
+        .phase-header::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid #2c3e50;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            z-index: 2;
+        }
+        
+        .phase-header:last-child::after {
+            display: none;
+        }
+        
+        .phase-name {
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+        
+        .phase-duration {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+        
+        /* MAIN CONTENT ROWS */
+        .content-row {
+            display: flex;
+            min-height: 120px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .row-label {
+            width: 120px;
+            padding: 15px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .content-cells {
+            display: flex;
+            flex: 1;
+        }
+        
+        .content-cell {
+            flex: 1;
+            padding: 12px 8px;
+            border-right: 1px solid #e0e0e0;
+            font-size: 10px;
+            line-height: 1.3;
+            position: relative;
+            background: white;
+        }
+        
+        .content-cell:last-child {
+            border-right: none;
+        }
+        
+        /* EMOJI ICONS */
+        .emoji-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin: 0 3px;
+        }
+        
+        /* BEHAVIOR SECTION */
+        .behavior-content {
+            background: #f8f9fa;
+        }
+        
+        .behavior-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .behavior-list li {
+            margin-bottom: 6px;
+            font-size: 9px;
+            line-height: 1.2;
+            padding-left: 8px;
+            position: relative;
+        }
+        
+        .behavior-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d4a574;
+            font-weight: bold;
+        }
+        
+        /* EMOTIONAL RESPONSE */
+        .emotion-scale {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            position: relative;
+        }
+        
+        .emotion-indicator {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+        
+        .emotion-positive {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .emotion-neutral {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .emotion-negative {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        /* TOUCHPOINTS */
+        .touchpoints-section {
+            background: #e8f4f8;
+        }
+        
+        .touchpoint-item {
+            margin-bottom: 8px;
+            font-size: 9px;
+            padding: 4px 6px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+        
+        /* OPPORTUNITIES */
+        .opportunities-section {
+            background: #fff5e6;
+        }
+        
+        .opportunity-item {
+            margin-bottom: 8px;
+            font-size: 9px;
+            padding: 4px 6px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .opportunity-new {
+            border-left-color: #e74c3c;
+            background: #ffe6e6;
+        }
+        
+        /* ICONS AND ILLUSTRATIONS */
+        .content-icon {
+            font-size: 20px;
+            display: block;
+            text-align: center;
+            margin: 5px 0;
+        }
+        
+        .metric-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: #d4a574;
+            text-align: center;
+            margin: 5px 0;
+        }
+        
+        .metric-label {
+            font-size: 8px;
+            text-align: center;
+            color: #666;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .footer-brand {
+            color: #d4a574;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            Mapa de Experiência para Millena Nóbrega - Mentoria de Conteúdos Envolventes 3.0
+        </div>
+        
+        <!-- PHASES HEADER -->
+        <div class="phases-container">
+            <div class="phase-label">OBJETIVOS E<br>EXPECTATIVAS</div>
+            <div class="phases-row">
+                <div class="phase-header">
+                    <div class="phase-name">Descoberta</div>
+                    <div class="phase-duration">1-7 dias</div>
+                </div>
+                <div class="phase-header">
+                    <div class="phase-name">Interesse</div>
+                    <div class="phase-duration">7-21 dias</div>
+                </div>
+                <div class="phase-header">
+                    <div class="phase-name">Qualificação</div>
+                    <div class="phase-duration">14-30 dias</div>
+                </div>
+                <div class="phase-header">
+                    <div class="phase-name">Diagnóstico</div>
+                    <div class="phase-duration">1-2 semanas</div>
+                </div>
+                <div class="phase-header">
+                    <div class="phase-name">Onboarding</div>
+                    <div class="phase-duration">1-2 semanas</div>
+                </div>
+                <div class="phase-header">
+                    <div class="phase-name">Experiência</div>
+                    <div class="phase-duration">90 dias</div>
+                </div>
+                <div class="phase-header">
+                    <div class="phase-name">Retenção</div>
+                    <div class="phase-duration">12+ meses</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PASSO -->
+        <div class="content-row">
+            <div class="row-label">PASSO</div>
+            <div class="content-cells">
+                <div class="content-cell">
+                    <div class="content-icon">🔍</div>
+                    <strong>Alcance</strong><br>
+                    Encontra conteúdo educativo no Instagram ou recebe indicação
+                </div>
+                <div class="content-cell">
+                    <div class="content-icon">💡</div>
+                    <strong>Reconhecimento de Marca</strong><br>
+                    Participa do "Café com Narrativa" e consome carrosséis educativos
+                </div>
+                <div class="content-cell">
+                    <div class="content-icon">📋</div>
+                    <strong>Teste Grátis</strong><br>
+                    Preenche formulário de aplicação e aguarda seleção
+                </div>
+                <div class="content-cell">
+                    <div class="content-icon">🎯</div>
+                    <strong>Assinatura do Plano</strong><br>
+                    Participa de chamada de diagnóstico e toma decisão
+                </div>
+                <div class="content-cell">
+                    <div class="content-icon">🚀</div>
+                    <strong>Usando a Plataforma</strong><br>
+                    Recebe boas-vindas e acessa material preparatório
+                </div>
+                <div class="content-cell">
+                    <div class="content-icon">⭐</div>
+                    <strong>Suporte</strong><br>
+                    Participa de sessões mensais e recebe suporte semanal
+                </div>
+                <div class="content-cell">
+                    <div class="content-icon">💎</div>
+                    <strong>Retenção</strong><br>
+                    Participa da comunidade alumni e obtém certificação
+                </div>
+            </div>
+        </div>
+        
+        <!-- COMPORTAMENTO -->
+        <div class="content-row">
+            <div class="row-label">COMPORTAMENTO</div>
+            <div class="content-cells">
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">😊</span>
+                        <span class="emoji">🤔</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Busca por "storytelling para vendas"</li>
+                        <li>Assiste reels sobre narrativas</li>
+                        <li>Comenta e interage com posts</li>
+                        <li>Segue perfil da Millena</li>
+                    </ul>
+                </div>
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">😍</span>
+                        <span class="emoji">📚</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Ativa notificações do perfil</li>
+                        <li>Participa ativamente dos lives</li>
+                        <li>Compartilha conteúdo nos stories</li>
+                        <li>Salva posts importantes</li>
+                    </ul>
+                </div>
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">😰</span>
+                        <span class="emoji">📝</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Pesquisa sobre a metodologia</li>
+                        <li>Lê depoimentos de ex-alunos</li>
+                        <li>Avalia investimento vs. retorno</li>
+                        <li>Preenche aplicação detalhada</li>
+                    </ul>
+                </div>
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">🤩</span>
+                        <span class="emoji">💳</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Agenda chamada rapidamente</li>
+                        <li>Prepara perguntas específicas</li>
+                        <li>Toma decisão durante chamada</li>
+                        <li>Efetua pagamento imediato</li>
+                    </ul>
+                </div>
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">😄</span>
+                        <span class="emoji">📖</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Estuda material preparatório</li>
+                        <li>Interage no grupo de alunos</li>
+                        <li>Agenda primeira sessão</li>
+                        <li>Define objetivos específicos</li>
+                    </ul>
+                </div>
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">🥰</span>
+                        <span class="emoji">📈</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Implementa metodologia aprendida</li>
+                        <li>Compartilha resultados obtidos</li>
+                        <li>Participa ativamente das sessões</li>
+                        <li>Aplica feedback recebido</li>
+                    </ul>
+                </div>
+                <div class="content-cell behavior-content">
+                    <div class="emoji-row">
+                        <span class="emoji">😇</span>
+                        <span class="emoji">🏆</span>
+                    </div>
+                    <ul class="behavior-list">
+                        <li>Indica novos candidatos</li>
+                        <li>Participa de eventos presenciais</li>
+                        <li>Mantém networking ativo</li>
+                        <li>Busca certificação avançada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PENSANDO -->
+        <div class="content-row">
+            <div class="row-label">PENSANDO</div>
+            <div class="content-cells">
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"Preciso melhorar minha conversão"</li>
+                        <li>"Como posso vender com naturalidade?"</li>
+                        <li>"Será que storytelling realmente funciona?"</li>
+                        <li>"Preciso de uma metodologia estruturada"</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"A Millena realmente entende do assunto"</li>
+                        <li>"Os cases são impressionantes"</li>
+                        <li>"Quero aprender essa metodologia"</li>
+                        <li>"Vale a pena investir tempo nisso"</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"Será que vou ser selecionada?"</li>
+                        <li>"O investimento é alto, mas necessário"</li>
+                        <li>"Preciso dessa transformação"</li>
+                        <li>"É uma oportunidade única"</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"Fui selecionada! Que oportunidade!"</li>
+                        <li>"O diagnóstico fez muito sentido"</li>
+                        <li>"Vou conseguir o ROI prometido"</li>
+                        <li>"É o momento certo para investir"</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"Estou animada para começar"</li>
+                        <li>"O material é muito completo"</li>
+                        <li>"Vou aproveitar ao máximo"</li>
+                        <li>"Já vejo possibilidades de aplicação"</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"A metodologia realmente funciona"</li>
+                        <li>"Estou vendo resultados concretos"</li>
+                        <li>"Valeu cada centavo investido"</li>
+                        <li>"Meu negócio está transformado"</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>"A Millena mudou minha vida"</li>
+                        <li>"Quero continuar evoluindo"</li>
+                        <li>"Preciso indicar para outras pessoas"</li>
+                        <li>"Sou uma storyteller certificada"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SENTINDO -->
+        <div class="content-row">
+            <div class="row-label">SENTINDO</div>
+            <div class="content-cells">
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Frustração com resultados atuais</li>
+                        <li>Esperança de encontrar solução</li>
+                        <li>Curiosidade sobre metodologia</li>
+                        <li>Urgência para melhorar vendas</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Confiança crescente na Millena</li>
+                        <li>Identificação com a abordagem</li>
+                        <li>Empolgação com possibilidades</li>
+                        <li>Sensação de estar no caminho certo</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Ansiedade sobre processo seletivo</li>
+                        <li>Medo de não ser escolhida</li>
+                        <li>Expectativa alta sobre resultado</li>
+                        <li>Determinação para ser aceita</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Gratidão por ser selecionada</li>
+                        <li>Confiança na decisão tomada</li>
+                        <li>Alívio por ter encontrado solução</li>
+                        <li>Empolgação para começar</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Motivação para aprender</li>
+                        <li>Sensação de exclusividade</li>
+                        <li>Confiança no investimento</li>
+                        <li>Expectativa positiva</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Satisfação com progresso</li>
+                        <li>Confiança na metodologia</li>
+                        <li>Orgulho dos resultados</li>
+                        <li>Gratidão pela transformação</li>
+                    </ul>
+                </div>
+                <div class="content-cell">
+                    <ul class="behavior-list">
+                        <li>Lealdade profunda à marca</li>
+                        <li>Orgulho de ser alumni</li>
+                        <li>Satisfação em indicar outros</li>
+                        <li>Sensação de pertencimento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RESPOSTA EMOCIONAL -->
+        <div class="content-row">
+            <div class="row-label">RESPOSTA<br>EMOCIONAL</div>
+            <div class="content-cells">
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-neutral">😊</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Curiosidade e esperança
+                    </div>
+                </div>
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-positive">😍</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Confiança crescente
+                    </div>
+                </div>
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-neutral">😰</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Ansiedade e expectativa
+                    </div>
+                </div>
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-positive">🤩</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Gratidão e confiança
+                    </div>
+                </div>
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-positive">😄</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Empolgação e motivação
+                    </div>
+                </div>
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-positive">🥰</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Satisfação e orgulho
+                    </div>
+                </div>
+                <div class="content-cell">
+                    <div class="emotion-scale">
+                        <div class="emotion-indicator emotion-positive">😇</div>
+                    </div>
+                    <div style="text-align: center; font-size: 8px; margin-top: 5px;">
+                        Lealdade e gratidão
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TOUCHPOINTS -->
+        <div class="content-row touchpoints-section">
+            <div class="row-label">Touch-Points por Canal</div>
+            <div class="content-cells">
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">INSTAGRAM</strong>
+                    <div class="touchpoint-item">Reels educativos sobre storytelling</div>
+                    <div class="touchpoint-item">Carrosséis com metodologia</div>
+                    <div class="touchpoint-item">Stories com bastidores</div>
+                </div>
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">WEBSITE</strong>
+                    <div class="touchpoint-item">Página de aplicação</div>
+                    <div class="touchpoint-item">Blog com artigos</div>
+                    <div class="touchpoint-item">Cases de sucesso</div>
+                </div>
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">RELACIONAMENTO</strong>
+                    <div class="touchpoint-item">Chamada de diagnóstico</div>
+                    <div class="touchpoint-item">Sessões individuais</div>
+                    <div class="touchpoint-item">Suporte personalizado</div>
+                </div>
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">PLATAFORMA</strong>
+                    <div class="touchpoint-item">Material preparatório</div>
+                    <div class="touchpoint-item">Biblioteca de templates</div>
+                    <div class="touchpoint-item">Grupo exclusivo</div>
+                </div>
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">EXPERIÊNCIA</strong>
+                    <div class="touchpoint-item">Sessões mensais 4h</div>
+                    <div class="touchpoint-item">Suporte semanal</div>
+                    <div class="touchpoint-item">Comunidade ativa</div>
+                </div>
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">COMUNIDADE</strong>
+                    <div class="touchpoint-item">Eventos presenciais</div>
+                    <div class="touchpoint-item">Grupo alumni</div>
+                    <div class="touchpoint-item">Certificação</div>
+                </div>
+                <div class="content-cell">
+                    <strong style="font-size: 10px;">ADVOCACY</strong>
+                    <div class="touchpoint-item">Programa indicações</div>
+                    <div class="touchpoint-item">Depoimentos</div>
+                    <div class="touchpoint-item">Networking</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- OPORTUNIDADES -->
+        <div class="content-row opportunities-section">
+            <div class="row-label">Oportunidades</div>
+            <div class="content-cells">
+                <div class="content-cell">
+                    <div class="opportunity-item">Série "Storytelling Estratégico" para leads qualificados</div>
+                    <div class="opportunity-item">Conteúdo mais sofisticado</div>
+                </div>
+                <div class="content-cell">
+                    <div class="opportunity-item">Webinars exclusivos sobre casos avançados</div>
+                    <div class="opportunity-item">Parcerias estratégicas</div>
+                </div>
+                <div class="content-cell">
+                    <div class="opportunity-item">Processo de seleção mais rigoroso</div>
+                    <div class="opportunity-item">Critérios de qualificação claros</div>
+                </div>
+                <div class="content-cell">
+                    <div class="opportunity-item">Diagnóstico mais aprofundado</div>
+                    <div class="opportunity-item">Proposta personalizada</div>
+                </div>
+                <div class="content-cell">
+                    <div class="opportunity-item">Kit de boas-vindas premium</div>
+                    <div class="opportunity-item">Mentoria preparatória</div>
+                </div>
+                <div class="content-cell">
+                    <div class="opportunity-item">Masterclasses exclusivas</div>
+                    <div class="opportunity-item">Acesso a ferramentas premium</div>
+                </div>
+                <div class="content-cell">
+                    <div class="opportunity-new">Programa de embaixadores</div>
+                    <div class="opportunity-new">Certificação avançada</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            Preparado por: <span class="footer-brand">Natália Silva - Essentia Estúdio</span> | 2025
+        </div>
+    </div>
+</body>
+</html>
+

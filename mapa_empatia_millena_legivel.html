@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Empatia - Millena Nóbrega</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f4f0;
+            color: #2c3e50;
+            font-size: 14px;
+            line-height: 1.4;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: visible;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            position: relative;
+            padding: 40px;
+            min-height: 800px;
+        }
+        
+        .empathy-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 3px solid #d4a574;
+            border-radius: 8px;
+            background: white;
+            margin-bottom: 40px;
+        }
+        
+        .empathy-grid {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            position: relative;
+        }
+        
+        .quadrant {
+            padding: 30px;
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        .quadrant-top-left {
+            border-right: 2px solid #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
+            background: #fff8f0;
+        }
+        
+        .quadrant-top-right {
+            border-bottom: 2px solid #e0e0e0;
+            background: #f0f8ff;
+        }
+        
+        .quadrant-bottom-left {
+            border-right: 2px solid #e0e0e0;
+            background: #f8f0ff;
+        }
+        
+        .quadrant-bottom-right {
+            background: #f0fff8;
+        }
+        
+        .quadrant h3 {
+            color: #d4a574;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 2px solid #d4a574;
+            padding-bottom: 8px;
+        }
+        
+        .quadrant ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quadrant li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .quadrant li:before {
+            content: "•";
+            color: #d4a574;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+        
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: white;
+            border: 4px solid #d4a574;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .center-title {
+            color: #d4a574;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .center-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+        
+        .center-subtitle {
+            font-size: 10px;
+            color: #7f8c8d;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .bottom-box {
+            background: white;
+            border: 3px solid #d4a574;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        .bottom-box h3 {
+            color: #d4a574;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 2px solid #d4a574;
+            padding-bottom: 8px;
+        }
+        
+        .bottom-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .bottom-box li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .bottom-box li:before {
+            content: "•";
+            color: #d4a574;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 40px;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 11px;
+            margin-bottom: 6px;
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 4px;
+            border-left: 3px solid #d4a574;
+        }
+        
+        .quote-author {
+            font-size: 10px;
+            color: #95a5a6;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #d4a574 0%, #c19653 100%);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 10px 0 5px 0;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PERSONA - EMPREENDEDORA DIGITAL</h1>
+            <p>Cliente Ideal da Mentoria de Conteúdos Envolventes 3.0</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="empathy-container">
+                <div class="empathy-grid">
+                    <!-- Quadrante Superior Esquerdo: O QUE ELA ESCUTA -->
+                    <div class="quadrant quadrant-top-left">
+                        <h3>O QUE ELA ESCUTA?</h3>
+                        
+                        <div class="quote">
+                            "Storytelling é o futuro do marketing digital"
+                        </div>
+                        <div class="quote-author">Especialistas do mercado</div>
+                        
+                        <div class="quote">
+                            "Fulana está faturando muito com Instagram"
+                        </div>
+                        <div class="quote-author">Amigas empreendedoras</div>
+                        
+                        <div class="section-title">Do mercado:</div>
+                        <ul>
+                            <li>"Você precisa vender com naturalidade"</li>
+                            <li>"Invista em você e no seu negócio"</li>
+                            <li>"Conteúdo é rei, mas conversão é rainha"</li>
+                            <li>"Autenticidade é o que mais converte"</li>
+                        </ul>
+                        
+                        <div class="section-title">De pessoas próximas:</div>
+                        <ul>
+                            <li>"Quando você vai ter um emprego 'de verdade'?" (família)</li>
+                            <li>"Seus preços estão altos" (clientes)</li>
+                            <li>"Nossa metodologia é única" (concorrentes)</li>
+                        </ul>
+                        
+                        <div class="section-title">De especialistas:</div>
+                        <ul>
+                            <li>Podcasts sobre transformação empresarial</li>
+                            <li>Lives com dicas de marketing de conteúdo</li>
+                            <li>Promessas de resultados rápidos</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Quadrante Superior Direito: O QUE ELA VÊ -->
+                    <div class="quadrant quadrant-top-right">
+                        <h3>O QUE ELA VÊ?</h3>
+                        
+                        <div class="section-title">Ambiente digital:</div>
+                        <ul>
+                            <li><span class="highlight">Instagram saturado</span> de "gurus" do marketing</li>
+                            <li><span class="highlight">Concorrentes</span> vendendo produtos similares com sucesso</li>
+                            <li><span class="highlight">Influenciadoras</span> que parecem vender naturalmente</li>
+                            <li><span class="highlight">Cases de sucesso</span> de outras empreendedoras</li>
+                            <li>Anúncios de cursos e mentorias constantemente</li>
+                        </ul>
+                        
+                        <div class="section-title">Ambiente pessoal:</div>
+                        <ul>
+                            <li>Amigas empreendedoras com resultados melhores</li>
+                            <li>Família questionando o negócio online</li>
+                            <li>Clientes que não convertem como esperado</li>
+                            <li>Métricas do Instagram que não melhoram</li>
+                            <li>Faturamento estagnado ou inconsistente</li>
+                        </ul>
+                        
+                        <div class="section-title">Referências:</div>
+                        <ul>
+                            <li><span class="highlight">Millena Nóbrega</span> criando conteúdo envolvente</li>
+                            <li>Outras mentoras com metodologias diferentes</li>
+                            <li>Estratégias que funcionam para outros nichos</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Quadrante Inferior Esquerdo: O QUE ELA FALA E FAZ -->
+                    <div class="quadrant quadrant-bottom-left">
+                        <h3>O QUE ELA FALA E FAZ?</h3>
+                        
+                        <div class="section-title">Para si mesma:</div>
+                        <ul>
+                            <li>"Preciso melhorar meu conteúdo"</li>
+                            <li>"Vou investir em mim mesma este ano"</li>
+                            <li>"Outras conseguem, eu também consigo"</li>
+                            <li>"Preciso ser mais estratégica"</li>
+                        </ul>
+                        
+                        <div class="section-title">Para outros:</div>
+                        <ul>
+                            <li>"Estou estudando storytelling para vendas"</li>
+                            <li>"Millena Nóbrega tem uma metodologia interessante"</li>
+                            <li>"Preciso investir mais em conhecimento"</li>
+                            <li>"Meu negócio está crescendo, mas pode melhorar"</li>
+                        </ul>
+                        
+                        <div class="section-title">Ações diárias:</div>
+                        <ul>
+                            <li>Consome conteúdo educativo diariamente</li>
+                            <li>Salva posts e reels para revisar depois</li>
+                            <li>Pesquisa sobre Millena e metodologia</li>
+                            <li>Lê depoimentos de ex-alunos</li>
+                            <li>Testa diferentes tipos de conteúdo</li>
+                            <li>Analisa métricas de engajamento</li>
+                            <li>Participa de grupos de empreendedoras</li>
+                            <li>Organiza orçamento para investimentos</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Quadrante Inferior Direito: O QUE ELA PENSA E SENTE -->
+                    <div class="quadrant quadrant-bottom-right">
+                        <h3>O QUE ELA PENSA E SENTE?</h3>
+                        
+                        <div class="section-title">Pensamentos estratégicos:</div>
+                        <ul>
+                            <li>"Como posso melhorar minha conversão?"</li>
+                            <li>"Por que ela vende mais que eu?"</li>
+                            <li>"Qual metodologia realmente funciona?"</li>
+                            <li>"Vale a pena investir R$ 15.000?"</li>
+                        </ul>
+                        
+                        <div class="section-title">Sentimentos positivos:</div>
+                        <ul>
+                            <li><span class="highlight">Esperança</span> de encontrar a solução certa</li>
+                            <li><span class="highlight">Empolgação</span> com possibilidades de crescimento</li>
+                            <li><span class="highlight">Determinação</span> para fazer o negócio dar certo</li>
+                            <li>Orgulho das conquistas já alcançadas</li>
+                            <li>Confiança na própria capacidade de aprender</li>
+                        </ul>
+                        
+                        <div class="section-title">Preocupações:</div>
+                        <ul>
+                            <li>Frustração com resultados atuais</li>
+                            <li>Ansiedade sobre o futuro do negócio</li>
+                            <li>Insegurança sobre suas habilidades</li>
+                            <li>Medo de fazer investimentos errados</li>
+                            <li>Pressão para provar que o negócio funciona</li>
+                            <li>ROI do investimento em mentoria</li>
+                            <li>Equilibrar negócio e vida pessoal</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Círculo Central -->
+                <div class="center-circle">
+                    <div class="center-title">O QUE ELA PENSA E SENTE?</div>
+                    <div class="center-icon">👩‍💼</div>
+                    <div class="center-subtitle">Empreendedora Digital<br>25-45 anos<br>Faturamento 5-6 dígitos</div>
+                </div>
+            </div>
+            
+            <!-- Seção Inferior -->
+            <div class="bottom-section">
+                <div class="bottom-box">
+                    <h3>QUAIS SÃO AS DORES?</h3>
+                    <ul>
+                        <li><strong>Conversão baixa:</strong> Posts com muitas curtidas mas poucas vendas</li>
+                        <li><strong>Falta de naturalidade:</strong> Sente-se "forçada" ao vender</li>
+                        <li><strong>Inconsistência:</strong> Resultados variam muito mês a mês</li>
+                        <li><strong>Sobrecarga de informação:</strong> Muitas estratégias diferentes no mercado</li>
+                        <li><strong>Limitações técnicas:</strong> Não domina storytelling estratégico</li>
+                        <li>Dificuldade em transformar seguidores em clientes</li>
+                        <li>Medo de ser invasiva ou insistente</li>
+                        <li>Não consegue replicar sucessos pontuais</li>
+                        <li>Paralisia por excesso de opções</li>
+                        <li>Falta de templates e processos estruturados</li>
+                        <li>"Não tenho tempo para testar tudo"</li>
+                        <li>"Já investi muito sem ver resultados"</li>
+                        <li>"Sinto que me falta algo fundamental"</li>
+                        <li>"Talvez eu não seja boa nisso"</li>
+                    </ul>
+                </div>
+                
+                <div class="bottom-box">
+                    <h3>QUAIS SÃO OS OBJETIVOS?</h3>
+                    <ul>
+                        <li><strong>Vender naturalmente</strong> sem se sentir invasiva</li>
+                        <li><strong>Ter uma metodologia</strong> que funciona consistentemente</li>
+                        <li><strong>Crescer o negócio</strong> de forma sustentável</li>
+                        <li><strong>Ser reconhecida</strong> como referência no seu nicho</li>
+                        <li><strong>Ter liberdade</strong> de tempo e dinheiro</li>
+                        <li><strong>Impactar positivamente</strong> a vida das pessoas</li>
+                        <li>Faturamento consistente e crescente</li>
+                        <li>Independência financeira</li>
+                        <li>Segurança para a família</li>
+                        <li>Transformar vidas através do trabalho</li>
+                        <li>Deixar um legado positivo</li>
+                        <li>Inspirar outras mulheres empreendedoras</li>
+                        <li>Trabalho que dá prazer e propósito</li>
+                        <li>Respeito dos pares</li>
+                        <li>Orgulho do próprio trabalho</li>
+                        <li>Equilíbrio entre sucesso e família</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p><strong>Preparado por Natália Silva - Essentia Estúdio | 2025</strong> | Estratégia de Lançamento Mentoria 3.0</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
