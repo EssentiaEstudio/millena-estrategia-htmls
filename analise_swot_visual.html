@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise SWOT - Millena Nóbrega | Redes Sociais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #CD853F 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            min-height: 800px;
+        }
+
+        .swot-quadrant {
+            padding: 40px;
+            position: relative;
+            border: 2px solid #f0f0f0;
+        }
+
+        .strengths {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4f1d4 100%);
+            border-color: #4CAF50;
+        }
+
+        .weaknesses {
+            background: linear-gradient(135deg, #ffe8e8 0%, #ffd4d4 100%);
+            border-color: #f44336;
+        }
+
+        .opportunities {
+            background: linear-gradient(135deg, #e8f4ff 0%, #d4ebff 100%);
+            border-color: #2196F3;
+        }
+
+        .threats {
+            background: linear-gradient(135deg, #fff8e8 0%, #ffedd4 100%);
+            border-color: #FF9800;
+        }
+
+        .quadrant-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+        }
+
+        .strengths .quadrant-header {
+            border-color: #4CAF50;
+        }
+
+        .weaknesses .quadrant-header {
+            border-color: #f44336;
+        }
+
+        .opportunities .quadrant-header {
+            border-color: #2196F3;
+        }
+
+        .threats .quadrant-header {
+            border-color: #FF9800;
+        }
+
+        .quadrant-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .quadrant-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .swot-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            border-left: 4px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .swot-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .strengths .swot-item {
+            border-color: #4CAF50;
+        }
+
+        .weaknesses .swot-item {
+            border-color: #f44336;
+        }
+
+        .opportunities .swot-item {
+            border-color: #2196F3;
+        }
+
+        .threats .swot-item {
+            border-color: #FF9800;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .insights-section {
+            background: #f8f6f3;
+            padding: 40px;
+            border-top: 3px solid #CD853F;
+        }
+
+        .insights-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .insight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #CD853F;
+        }
+
+        .insight-icon {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .insight-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .insight-text {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #8B4513;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .swot-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .swot-quadrant {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 ANÁLISE SWOT</h1>
+            <p>Diagnóstico Estratégico das Redes Sociais | Millena Nóbrega</p>
+        </div>
+
+        <div class="swot-grid">
+            <!-- FORÇAS -->
+            <div class="swot-quadrant strengths">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">💪</div>
+                    <div class="quadrant-title">FORÇAS</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Storytelling Autêntico</div>
+                    <div class="item-description">Capacidade única de criar narrativas envolventes que geram conexão emocional genuína com a audiência.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Metodologia Própria</div>
+                    <div class="item-description">Framework estruturado e testado que gera resultados consistentes para os alunos.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Engajamento Qualificado</div>
+                    <div class="item-description">Taxa de engajamento superior à média do mercado (0,82%) com audiência altamente engajada.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Crescimento Orgânico</div>
+                    <div class="item-description">Capacidade de atrair seguidores qualificados sem dependência excessiva de mídia paga.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Autoridade Estabelecida</div>
+                    <div class="item-description">Reconhecimento no nicho como especialista em storytelling para empreendedores.</div>
+                </div>
+            </div>
+
+            <!-- FRAQUEZAS -->
+            <div class="swot-quadrant weaknesses">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">⚠️</div>
+                    <div class="quadrant-title">FRAQUEZAS</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Imagem Jovem Demais</div>
+                    <div class="item-description">Posicionamento visual pode não transmitir autoridade suficiente para clientes premium.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Baixa Frequência de CTA</div>
+                    <div class="item-description">Apenas 5% do conteúdo é promocional, limitando oportunidades de conversão.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Dependência de Instagram</div>
+                    <div class="item-description">Concentração excessiva em uma plataforma pode representar risco estratégico.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Segmentação Limitada</div>
+                    <div class="item-description">Conteúdo não diferenciado por nível de maturidade da audiência.</div>
+                </div>
+            </div>
+
+            <!-- OPORTUNIDADES -->
+            <div class="swot-quadrant opportunities">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">🚀</div>
+                    <div class="quadrant-title">OPORTUNIDADES</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Amadurecimento da Imagem</div>
+                    <div class="item-description">Evolução visual estratégica para atrair clientes de maior valor sem perder autenticidade.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Conteúdo Premium</div>
+                    <div class="item-description">Criação de série avançada para empreendedores maduros, diferenciando da base iniciante.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Automação Inteligente</div>
+                    <div class="item-description">Implementação de sistemas que nutrem leads de forma personalizada e escalável.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Expansão de Plataformas</div>
+                    <div class="item-description">Diversificação para LinkedIn, YouTube e outras plataformas relevantes para o público-alvo.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Parcerias Estratégicas</div>
+                    <div class="item-description">Colaborações com outros especialistas para ampliar autoridade e alcance.</div>
+                </div>
+            </div>
+
+            <!-- AMEAÇAS -->
+            <div class="swot-quadrant threats">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">⚡</div>
+                    <div class="quadrant-title">AMEAÇAS</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Saturação do Nicho</div>
+                    <div class="item-description">Crescimento do número de especialistas em storytelling pode commoditizar o mercado.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Mudanças Algorítmicas</div>
+                    <div class="item-description">Alterações nas plataformas podem impactar alcance orgânico e engajamento.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Crise Econômica</div>
+                    <div class="item-description">Redução de investimento em educação e mentorias durante períodos de instabilidade.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Concorrência Internacional</div>
+                    <div class="item-description">Entrada de players globais com maior investimento e recursos.</div>
+                </div>
+                
+                <div class="swot-item">
+                    <div class="item-title">Cópia de Metodologia</div>
+                    <div class="item-description">Risco de replicação da abordagem por concorrentes sem diferenciação clara.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <h2 class="insights-title">💡 INSIGHTS ESTRATÉGICOS</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">🎯</div>
+                    <div class="insight-title">Posicionamento Premium</div>
+                    <div class="insight-text">A combinação de forças únicas (storytelling autêntico + metodologia própria) cria base sólida para evolução premium, mas requer amadurecimento visual.</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">📈</div>
+                    <div class="insight-title">Potencial de Conversão</div>
+                    <div class="insight-text">Alto engajamento qualificado indica audiência pronta para investir, mas baixa frequência de CTA limita monetização atual.</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">🔄</div>
+                    <div class="insight-title">Diversificação Necessária</div>
+                    <div class="insight-text">Dependência excessiva do Instagram representa risco, mas autoridade estabelecida facilita expansão para outras plataformas.</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">⚖️</div>
+                    <div class="insight-title">Timing Estratégico</div>
+                    <div class="insight-text">Momento ideal para evolução: antes da saturação completa do nicho e com base sólida de autoridade já estabelecida.</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">🛡️</div>
+                    <div class="insight-title">Diferenciação Sustentável</div>
+                    <div class="insight-text">Metodologia própria + storytelling autêntico criam barreira defensiva contra cópias e commoditização do mercado.</div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-icon">🎪</div>
+                    <div class="insight-title">Segmentação Inteligente</div>
+                    <div class="insight-text">Oportunidade de criar jornadas diferenciadas por maturidade, maximizando valor para cada perfil de cliente.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Elaborado por:</strong> Natália Silva - Essentia Estúdio</p>
+            <p><strong>Data:</strong> Janeiro 2025 | <strong>Foco:</strong> Estratégia de Redes Sociais</p>
+        </div>
+    </div>
+</body>
+</html>
+
