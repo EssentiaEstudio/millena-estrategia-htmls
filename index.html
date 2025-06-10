@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia de Lançamento - Millena Nóbrega | Essentia Estúdio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #CD853F 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .intro-section {
+            padding: 50px 40px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .intro-section h2 {
+            font-size: 2rem;
+            color: #8B4513;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .materials-section {
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .material-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--card-color), var(--card-color-light));
+        }
+
+        .empatia-card {
+            --card-color: #e91e63;
+            --card-color-light: #f8bbd9;
+            border-top-color: #e91e63;
+        }
+
+        .experiencia-card {
+            --card-color: #2196f3;
+            --card-color-light: #bbdefb;
+            border-top-color: #2196f3;
+        }
+
+        .mental-card {
+            --card-color: #4caf50;
+            --card-color-light: #c8e6c9;
+            border-top-color: #4caf50;
+        }
+
+        .swot-card {
+            --card-color: #ff9800;
+            --card-color-light: #ffe0b2;
+            border-top-color: #ff9800;
+        }
+
+        .objetivos-card {
+            --card-color: #9c27b0;
+            --card-color-light: #e1bee7;
+            border-top-color: #9c27b0;
+        }
+
+        .bsc-card {
+            --card-color: #607d8b;
+            --card-color-light: #cfd8dc;
+            border-top-color: #607d8b;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .card-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--card-color), var(--card-color-light));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            text-decoration: none;
+            color: white;
+        }
+
+        .instagram-badge {
+            background: linear-gradient(135deg, #E4405F 0%, #C13584 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+            display: inline-block;
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+            display: inline-block;
+        }
+
+        .footer {
+            background: #8B4513;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .footer .signature {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8B4513;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .materials-section {
+                padding: 40px 20px;
+            }
+            
+            .material-card {
+                padding: 25px;
+            }
+
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Estratégia de Lançamento MCE 3.0</h1>
+            <p>Mentoria de Conteúdos Envolventes 3.0 | Materiais Estratégicos Completos para Instagram | Desenvolvido pela Essentia Estúdio</p>
+        </div>
+
+        <div class="intro-section">
+            <h2>📋 Análise Estratégica Completa</h2>
+            <p>Conjunto completo de materiais desenvolvidos para fundamentar o lançamento da Mentoria 3.0 da Millena Nóbrega, baseado em metodologia híbrida que combina storytelling estratégico com framework Unbound Marketing e métricas realistas para Instagram.</p>
+        </div>
+
+        <div class="stats-section">
+            <h3 style="color: #8B4513; margin-bottom: 20px;">📊 Resumo Estratégico</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">25-30</span>
+                    <div class="stat-label">Novos Alunos Meta</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">R$ 450k</span>
+                    <div class="stat-label">Faturamento Projetado</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6.000</span>
+                    <div class="stat-label">Novos Seguidores/Mês</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10-12</span>
+                    <div class="stat-label">Posts/Semana Instagram</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="materials-section">
+            <h2 class="section-title">🎯 Materiais Estratégicos Desenvolvidos</h2>
+            
+            <div class="materials-grid">
+                <!-- Mapa de Empatia -->
+                <div class="material-card empatia-card">
+                    <span class="card-icon">👥</span>
+                    <h3 class="card-title">Mapa de Empatia</h3>
+                    <p class="card-description">Análise profunda da persona ideal da Millena, mapeando pensamentos, sentimentos, dores e objetivos da empreendedora digital que busca storytelling estratégico para escalar seu negócio.</p>
+                    <a href="mapa_empatia_millena_legivel.html" class="card-button">Visualizar Mapa de Empatia</a>
+                </div>
+
+                <!-- Mapa de Experiência -->
+                <div class="material-card experiencia-card">
+                    <span class="card-icon">🗺️</span>
+                    <h3 class="card-title">Mapa de Experiência</h3>
+                    <p class="card-description">Jornada completa do cliente em 7 fases estratégicas, desde o primeiro contato até a transformação, com touchpoints, emoções e oportunidades mapeadas detalhadamente.</p>
+                    <a href="mapa_experiencia_horizontal_millena.html" class="card-button">Visualizar Mapa de Experiência</a>
+                </div>
+
+                <!-- Mapa Mental -->
+                <div class="material-card mental-card">
+                    <span class="card-icon">🧠</span>
+                    <h3 class="card-title">Mapa Mental Macroambiente</h3>
+                    <p class="card-description">Análise do macroambiente conectada à estratégia, identificando oportunidades de mercado, tendências tecnológicas, insights comportamentais e fatores críticos de sucesso.</p>
+                    <a href="mapa_mental_corrigido.html" class="card-button">Visualizar Mapa Mental</a>
+                </div>
+
+                <!-- Análise SWOT -->
+                <div class="material-card swot-card">
+                    <span class="card-icon">📊</span>
+                    <h3 class="card-title">Análise SWOT</h3>
+                    <p class="card-description">Diagnóstico estratégico das redes sociais, mapeando forças, fraquezas, oportunidades e ameaças com insights acionáveis para tomada de decisão e posicionamento competitivo.</p>
+                    <a href="analise_swot_visual.html" class="card-button">Visualizar Análise SWOT</a>
+                </div>
+
+                <!-- Objetivos por Etapa da Jornada -->
+                <div class="material-card objetivos-card">
+                    <span class="card-icon">🎯</span>
+                    <h3 class="card-title">Objetivos por Etapa da Jornada <span class="instagram-badge">📱 Instagram</span></h3>
+                    <p class="card-description">Tabela estratégica seguindo modelo Kiso com objetivos de conteúdo específicos para cada etapa da jornada, métricas realistas, parâmetros de execução e ações de contingência.</p>
+                    <a href="objetivos_instagram_corrigido_final.html" class="card-button">Visualizar Objetivos por Etapa</a>
+                </div>
+
+                <!-- Balanced Score Card -->
+                <div class="material-card bsc-card">
+                    <span class="card-icon">📈</span>
+                    <h3 class="card-title">Balanced Score Card <span class="instagram-badge">📱 Instagram</span> <span class="new-badge">NOVO</span></h3>
+                    <p class="card-description">BSC completo com 4 perspectivas estratégicas (Financeira, Cliente, Processos, Aprendizado) focado no lançamento de 30-45 dias, com métricas realistas e CAC ajustado para equipe robusta.</p>
+                    <a href="balanced_scorecard_instagram_realista.html" class="card-button">Visualizar Balanced Score Card</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🎯 Estratégia Fundamentada em Dados e Metodologia Híbrida</h3>
+            <p>Cada material foi desenvolvido com base em análise rigorosa de mercado, comportamento da audiência, dados reais do Instagram da Millena e metodologias comprovadas.</p>
+            <p><strong>Resultado:</strong> Estratégia sólida e executável para posicionar a Millena como "A Maga do Storytelling Estratégico" do Brasil.</p>
+            
+            <div class="signature">
+                <p><strong>Elaborado por:</strong> Natália Silva - Essentia Estúdio</p>
+                <p><strong>Data:</strong> Janeiro 2025 | <strong>Projeto:</strong> Lançamento MCE 3.0</p>
+                <p><strong>Metodologia:</strong> Unbound Marketing + Storytelling Estratégico + Análise de Dados</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
